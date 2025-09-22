@@ -1,3 +1,7 @@
+"""
+Games API routes for the Tailspin Toys Crowd Funding platform.
+This module provides endpoints for retrieving game information.
+"""
 from flask import jsonify, Response, Blueprint
 from models import db, Game, Publisher, Category
 from sqlalchemy.orm import Query
@@ -6,6 +10,16 @@ from sqlalchemy.orm import Query
 games_bp = Blueprint('games', __name__)
 
 def get_games_base_query() -> Query:
+    """
+    Create the base query for retrieving games with related publisher and category data.
+    
+    This function creates a SQLAlchemy query that joins games with their associated
+    publisher and category information using outer joins to handle cases where
+    relationships might be None.
+    
+    Returns:
+        Query: SQLAlchemy query object for games with joined publisher and category data
+    """
     return db.session.query(Game).join(
         Publisher, 
         Game.publisher_id == Publisher.id, 
@@ -18,6 +32,15 @@ def get_games_base_query() -> Query:
 
 @games_bp.route('/api/games', methods=['GET'])
 def get_games() -> Response:
+    """
+    Retrieve all games from the database.
+    
+    This endpoint returns a list of all games in the crowdfunding platform,
+    including their associated publisher and category information.
+    
+    Returns:
+        Response: JSON response containing an array of game objects
+    """
     # Use the base query for all games
     games_query = get_games_base_query().all()
     
@@ -28,6 +51,18 @@ def get_games() -> Response:
 
 @games_bp.route('/api/games/<int:id>', methods=['GET'])
 def get_game(id: int) -> tuple[Response, int] | Response:
+    """
+    Retrieve a specific game by ID.
+    
+    This endpoint returns detailed information about a single game,
+    including its associated publisher and category information.
+    
+    Args:
+        id (int): The unique identifier of the game to retrieve
+        
+    Returns:
+        Response: JSON response containing the game object, or 404 error if not found
+    """
     # Use the base query and add filter for specific game
     game_query = get_games_base_query().filter(Game.id == id).first()
     
