@@ -1,0 +1,246 @@
+---
+import MCPHeader from '../components/MCPHeader.astro';
+import "../styles/global.css";
+
+const title = "MCP Center - Azure API Center";
+---
+
+<!doctype html>
+<html lang="en" class="dark">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <title>{title}</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    </head>
+    <body class="min-h-screen bg-slate-900 text-white transition-colors duration-300 m-0 w-full h-full font-sans">
+        <MCPHeader />
+        
+        <main class="container mx-auto py-8 px-4 sm:px-6 lg:px-8 max-w-7xl">
+            <!-- Search Bar -->
+            <div class="mb-6">
+                <div id="mcp-search-container"></div>
+            </div>
+
+            <!-- Banner -->
+            <div class="mb-8 bg-gradient-to-r from-blue-600/20 to-purple-600/20 border border-blue-500/30 rounded-xl p-6 backdrop-blur-sm">
+                <div class="flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-400 mr-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                    <div>
+                        <h2 class="text-xl font-semibold text-slate-100 mb-1">Build Your Scalable, Enterprise-Ready MCP Registry with Azure API Center</h2>
+                        <p class="text-sm text-slate-400">Discover and manage Model Context Protocol servers for your AI applications</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="flex flex-col lg:flex-row gap-8">
+                <!-- Sidebar -->
+                <aside class="lg:w-64 flex-shrink-0">
+                    <div id="mcp-filter-container"></div>
+                </aside>
+
+                <!-- Content Area -->
+                <div class="flex-1">
+                    <!-- Controls -->
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
+                        <h2 class="text-2xl font-semibold text-slate-100">Available MCP Servers</h2>
+                        
+                        <div class="flex items-center gap-4">
+                            <!-- Sort Dropdown -->
+                            <div class="relative">
+                                <select id="sort-select" class="appearance-none bg-slate-800/60 border border-slate-700 rounded-lg px-4 py-2 pr-10 text-sm text-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500 cursor-pointer">
+                                    <option value="name">Sort by Name</option>
+                                    <option value="vendor">Sort by Vendor</option>
+                                </select>
+                                <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                                    <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                                    </svg>
+                                </div>
+                            </div>
+
+                            <!-- View Toggle -->
+                            <div class="flex items-center bg-slate-800/60 border border-slate-700 rounded-lg p-1">
+                                <button id="grid-view" class="p-2 rounded text-blue-400 bg-slate-700/50 transition-all duration-200">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+                                    </svg>
+                                </button>
+                                <button id="list-view" class="p-2 rounded text-slate-400 hover:text-slate-300 transition-all duration-200">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card Grid -->
+                    <div id="mcp-grid-container"></div>
+                </div>
+            </div>
+        </main>
+
+        <script>
+            import { mount } from 'svelte';
+            import MCPSearchBar from '../components/MCPSearchBar.svelte';
+            import MCPFilterSidebar from '../components/MCPFilterSidebar.svelte';
+            import MCPCardGrid from '../components/MCPCardGrid.svelte';
+
+            // Mock data for MCP entries
+            const mockMCPEntries = [
+                {
+                    id: 1,
+                    title: "GitHub MCP Server",
+                    description: "Access GitHub repositories, issues, pull requests, and more through the Model Context Protocol.",
+                    type: "Remote",
+                    vendor: "Microsoft"
+                },
+                {
+                    id: 2,
+                    title: "Azure OpenAI MCP",
+                    description: "Integrate Azure OpenAI services with your MCP-enabled applications for enterprise AI capabilities.",
+                    type: "Remote",
+                    vendor: "Microsoft"
+                },
+                {
+                    id: 3,
+                    title: "Local File System MCP",
+                    description: "Access and manage local file systems through MCP with secure, sandboxed operations.",
+                    type: "Local",
+                    vendor: "Partner"
+                },
+                {
+                    id: 4,
+                    title: "Database MCP Server",
+                    description: "Connect to various databases (SQL, NoSQL) and perform queries through the MCP protocol.",
+                    type: "Remote",
+                    vendor: "Partner"
+                },
+                {
+                    id: 5,
+                    title: "Playwright MCP",
+                    description: "Browser automation capabilities using Playwright through Model Context Protocol.",
+                    type: "Local",
+                    vendor: "Microsoft"
+                },
+                {
+                    id: 6,
+                    title: "Azure Cosmos DB MCP",
+                    description: "Native integration with Azure Cosmos DB for globally distributed, multi-model database operations.",
+                    type: "Remote",
+                    vendor: "Microsoft"
+                }
+            ];
+
+            let filteredEntries = mockMCPEntries;
+            let selectedTypes: string[] = [];
+            let selectedVendors: string[] = [];
+            let selectedEndpoints: string[] = [];
+            let searchQuery = "";
+            let viewMode: 'grid' | 'list' = 'grid';
+            let sortBy = 'name';
+
+            function filterEntries() {
+                filteredEntries = mockMCPEntries.filter(entry => {
+                    const matchesType = selectedTypes.length === 0 || selectedTypes.includes(entry.type);
+                    const matchesVendor = selectedVendors.length === 0 || selectedVendors.includes(entry.vendor);
+                    const matchesSearch = searchQuery === "" || 
+                        entry.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                        entry.description.toLowerCase().includes(searchQuery.toLowerCase());
+                    
+                    return matchesType && matchesVendor && matchesSearch;
+                });
+                
+                updateGrid();
+            }
+
+            function updateGrid() {
+                const gridContainer = document.getElementById('mcp-grid-container');
+                if (gridContainer) {
+                    gridContainer.innerHTML = '';
+                    mount(MCPCardGrid, {
+                        target: gridContainer,
+                        props: {
+                            entries: filteredEntries,
+                            viewMode: viewMode,
+                            sortBy: sortBy
+                        }
+                    });
+                }
+            }
+
+            // Mount Search Bar
+            const searchContainer = document.getElementById('mcp-search-container');
+            if (searchContainer) {
+                mount(MCPSearchBar, {
+                    target: searchContainer,
+                    props: {
+                        onSearch: (query: string) => {
+                            searchQuery = query;
+                            filterEntries();
+                        }
+                    }
+                });
+            }
+
+            // Mount Filter Sidebar
+            const filterContainer = document.getElementById('mcp-filter-container');
+            if (filterContainer) {
+                mount(MCPFilterSidebar, {
+                    target: filterContainer,
+                    props: {
+                        selectedTypes: selectedTypes,
+                        selectedVendors: selectedVendors,
+                        selectedEndpoints: selectedEndpoints,
+                        onFilterChange: () => {
+                            filterEntries();
+                        }
+                    }
+                });
+            }
+
+            // Initial grid mount
+            updateGrid();
+
+            // Sort dropdown handler
+            const sortSelect = document.getElementById('sort-select') as HTMLSelectElement;
+            if (sortSelect) {
+                sortSelect.addEventListener('change', (e) => {
+                    sortBy = (e.target as HTMLSelectElement).value;
+                    updateGrid();
+                });
+            }
+
+            // View toggle handlers
+            const gridViewBtn = document.getElementById('grid-view');
+            const listViewBtn = document.getElementById('list-view');
+
+            if (gridViewBtn && listViewBtn) {
+                gridViewBtn.addEventListener('click', () => {
+                    viewMode = 'grid';
+                    gridViewBtn.classList.add('bg-slate-700/50', 'text-blue-400');
+                    gridViewBtn.classList.remove('text-slate-400');
+                    listViewBtn.classList.remove('bg-slate-700/50', 'text-blue-400');
+                    listViewBtn.classList.add('text-slate-400');
+                    updateGrid();
+                });
+
+                listViewBtn.addEventListener('click', () => {
+                    viewMode = 'list';
+                    listViewBtn.classList.add('bg-slate-700/50', 'text-blue-400');
+                    listViewBtn.classList.remove('text-slate-400');
+                    gridViewBtn.classList.remove('bg-slate-700/50', 'text-blue-400');
+                    gridViewBtn.classList.add('text-slate-400');
+                    updateGrid();
+                });
+            }
+        </script>
+    </body>
+</html>

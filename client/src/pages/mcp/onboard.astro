@@ -1,0 +1,137 @@
+---
+import MCPHeader from '../../components/MCPHeader.astro';
+import "../../styles/global.css";
+---
+
+<!doctype html>
+<html lang="en" class="dark">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <title>Onboard - MCP Center</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    </head>
+    <body class="min-h-screen bg-slate-900 text-white transition-colors duration-300 m-0 w-full h-full font-sans">
+        <MCPHeader />
+        
+        <main class="container mx-auto py-8 px-4 sm:px-6 lg:px-8 max-w-5xl">
+            <section class="max-w-5xl mx-auto px-4 py-8">
+                <div class="bg-slate-800/70 backdrop-blur-sm border border-slate-700 rounded-xl shadow-lg p-8 transition-colors duration-300">
+                    <h2 class="text-blue-400 text-4xl mb-8 pb-3 border-b border-slate-600 font-bold">Onboard Your MCP Server</h2>
+                    
+                    <div class="space-y-6">
+                        <p class="text-lg leading-relaxed text-slate-300">
+                            Ready to make your MCP server discoverable through MCP Center? Follow these steps to get started.
+                        </p>
+
+                        <div class="mt-8 space-y-8">
+                            <!-- Step 1 -->
+                            <div class="flex gap-4">
+                                <div class="flex-shrink-0">
+                                    <div class="flex items-center justify-center w-10 h-10 rounded-full bg-blue-600 text-white font-bold">
+                                        1
+                                    </div>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-semibold text-slate-100 mb-2">Prepare Your MCP Server</h3>
+                                    <p class="text-slate-400">
+                                        Ensure your MCP server follows the Model Context Protocol specification and is properly documented. 
+                                        Include clear descriptions of available tools, resources, and capabilities.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- Step 2 -->
+                            <div class="flex gap-4">
+                                <div class="flex-shrink-0">
+                                    <div class="flex items-center justify-center w-10 h-10 rounded-full bg-blue-600 text-white font-bold">
+                                        2
+                                    </div>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-semibold text-slate-100 mb-2">Configure Azure API Center</h3>
+                                    <p class="text-slate-400">
+                                        Set up your Azure API Center instance and configure authentication. Ensure you have the necessary 
+                                        permissions to register new APIs and MCP servers.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- Step 3 -->
+                            <div class="flex gap-4">
+                                <div class="flex-shrink-0">
+                                    <div class="flex items-center justify-center w-10 h-10 rounded-full bg-blue-600 text-white font-bold">
+                                        3
+                                    </div>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-semibold text-slate-100 mb-2">Register Your Server</h3>
+                                    <p class="text-slate-400 mb-4">
+                                        Use the Azure CLI or Azure Portal to register your MCP server in the API Center. Provide metadata 
+                                        including name, description, type (Local/Remote), vendor information, and endpoint details.
+                                    </p>
+                                    <div class="bg-slate-900/50 border border-slate-700 rounded-lg p-4 font-mono text-sm text-slate-300">
+                                        <code>az apic register --server-name "Your MCP Server" --type remote</code>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Step 4 -->
+                            <div class="flex gap-4">
+                                <div class="flex-shrink-0">
+                                    <div class="flex items-center justify-center w-10 h-10 rounded-full bg-blue-600 text-white font-bold">
+                                        4
+                                    </div>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-semibold text-slate-100 mb-2">Test and Validate</h3>
+                                    <p class="text-slate-400">
+                                        Test your MCP server registration to ensure it's discoverable and functioning correctly. 
+                                        Verify that all tools and resources are accessible through the MCP protocol.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- Step 5 -->
+                            <div class="flex gap-4">
+                                <div class="flex-shrink-0">
+                                    <div class="flex items-center justify-center w-10 h-10 rounded-full bg-blue-600 text-white font-bold">
+                                        5
+                                    </div>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-semibold text-slate-100 mb-2">Go Live</h3>
+                                    <p class="text-slate-400">
+                                        Once validated, your MCP server will be visible in MCP Center and available for discovery 
+                                        by users across your organization. Monitor usage and maintain your server documentation.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-12 p-6 bg-blue-900/20 border border-blue-700/50 rounded-lg">
+                            <h3 class="text-lg font-semibold text-blue-300 mb-2">Need Help?</h3>
+                            <p class="text-slate-300">
+                                Check out our <a href="#" class="text-blue-400 hover:text-blue-300 underline">documentation</a> or 
+                                contact our <a href="#" class="text-blue-400 hover:text-blue-300 underline">support team</a> for assistance 
+                                with onboarding your MCP server.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-12 flex justify-center">
+                        <a href="/mcp" class="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-blue-600/20 flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M9.707 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 1.414L7.414 9H15a1 1 0 110 2H7.414l2.293 2.293a1 1 0 010 1.414z" clip-rule="evenodd" />
+                            </svg>
+                            Back to MCP Center
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </body>
+</html>
