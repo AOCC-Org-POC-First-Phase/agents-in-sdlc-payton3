@@ -1,0 +1,73 @@
+---
+import MCPHeader from '../../components/MCPHeader.astro';
+import "../../styles/global.css";
+---
+
+<!doctype html>
+<html lang="en" class="dark">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <title>About - MCP Center</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    </head>
+    <body class="min-h-screen bg-slate-900 text-white transition-colors duration-300 m-0 w-full h-full font-sans">
+        <MCPHeader />
+        
+        <main class="container mx-auto py-8 px-4 sm:px-6 lg:px-8 max-w-5xl">
+            <section class="max-w-5xl mx-auto px-4 py-8">
+                <div class="bg-slate-800/70 backdrop-blur-sm border border-cyan-500/50 shadow-lg shadow-cyan-500/30 rounded-xl p-8 transition-colors duration-300">
+                    <h2 class="text-lime-300 text-4xl mb-8 pb-3 border-b border-fuchsia-500/50 font-bold drop-shadow-[0_0_8px_rgba(190,242,100,0.5)]">About MCP Center</h2>
+                    
+                    <div class="space-y-6">
+                        <p class="text-lg leading-relaxed text-cyan-300">
+                            MCP Center is your enterprise gateway to the Model Context Protocol (MCP) ecosystem. Built on Azure API Center, 
+                            we provide a scalable, secure, and reliable platform for discovering, managing, and deploying MCP servers across 
+                            your organization.
+                        </p>
+
+                        <p class="text-lg leading-relaxed text-cyan-300">
+                            The Model Context Protocol enables seamless integration between AI applications and various data sources, tools, 
+                            and services. Whether you need to connect to GitHub repositories, databases, file systems, or custom enterprise 
+                            APIs, MCP Center provides a unified registry to discover and manage these connections.
+                        </p>
+
+                        <h3 class="text-2xl font-semibold text-pink-300 mt-8 mb-4">Key Features</h3>
+                        
+                        <ul class="list-disc list-inside space-y-2 text-yellow-300">
+                            <li>Centralized registry for all your MCP servers</li>
+                            <li>Enterprise-grade security and compliance</li>
+                            <li>Support for both local and remote MCP servers</li>
+                            <li>Integration with Azure services and Microsoft ecosystem</li>
+                            <li>Partner ecosystem for extended capabilities</li>
+                            <li>Easy discovery and deployment</li>
+                        </ul>
+
+                        <p class="text-lg leading-relaxed text-cyan-300 mt-6">
+                            Built on Azure API Center's robust infrastructure, MCP Center ensures your AI applications have reliable, 
+                            secure, and scalable access to the resources they need to deliver intelligent experiences to your users.
+                        </p>
+                    </div>
+                    
+                    <div class="mt-12 flex justify-center gap-4">
+                        <a href="/mcp" class="px-6 py-3 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 text-white rounded-lg transition-all duration-300 shadow-lg shadow-cyan-500/50 hover:shadow-cyan-500/70 flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M9.707 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 1.414L7.414 9H15a1 1 0 110 2H7.414l2.293 2.293a1 1 0 010 1.414z" clip-rule="evenodd" />
+                            </svg>
+                            Back to MCP Center
+                        </a>
+                        <a href="/mcp/onboard" class="px-6 py-3 bg-gradient-to-r from-pink-500 to-fuchsia-500 hover:from-pink-400 hover:to-fuchsia-400 text-white rounded-lg transition-all duration-300 shadow-lg shadow-fuchsia-500/50 hover:shadow-fuchsia-500/70 flex items-center">
+                            Get Started
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </body>
+</html>
