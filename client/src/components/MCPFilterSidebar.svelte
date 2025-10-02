@@ -22,12 +22,12 @@
     }
 </script>
 
-<div class="bg-slate-800/60 backdrop-blur-sm rounded-xl border border-slate-700/50 p-6 sticky top-6">
-    <h3 class="text-lg font-semibold text-slate-100 mb-4">Filters</h3>
+<div class="bg-slate-800/60 backdrop-blur-sm rounded-xl border border-cyan-500/50 shadow-lg shadow-cyan-500/20 p-6 sticky top-6">
+    <h3 class="text-lg font-semibold text-lime-300 mb-4 drop-shadow-[0_0_8px_rgba(190,242,100,0.5)]">Filters</h3>
     
     <!-- Types -->
     <div class="mb-6">
-        <h4 class="text-sm font-medium text-slate-300 mb-3">Types</h4>
+        <h4 class="text-sm font-medium text-cyan-300 mb-3">Types</h4>
         <div class="space-y-2">
             {#each types as type}
                 <label class="flex items-center cursor-pointer group">
@@ -35,9 +35,9 @@
                         type="checkbox"
                         checked={selectedTypes.includes(type)}
                         on:change={() => toggleFilter(selectedTypes, type)}
-                        class="w-4 h-4 text-blue-600 bg-slate-700 border-slate-600 rounded focus:ring-blue-500 focus:ring-2 cursor-pointer"
+                        class="w-4 h-4 text-fuchsia-500 bg-slate-700 border-fuchsia-500 rounded focus:ring-fuchsia-500 focus:ring-2 cursor-pointer accent-fuchsia-500"
                     />
-                    <span class="ml-2 text-sm text-slate-400 group-hover:text-slate-300 transition-colors">{type}</span>
+                    <span class="ml-2 text-sm text-yellow-300 group-hover:text-lime-300 transition-colors">{type}</span>
                 </label>
             {/each}
         </div>
@@ -45,7 +45,7 @@
 
     <!-- Vendors -->
     <div class="mb-6">
-        <h4 class="text-sm font-medium text-slate-300 mb-3">Vendors</h4>
+        <h4 class="text-sm font-medium text-cyan-300 mb-3">Vendors</h4>
         <div class="space-y-2">
             {#each vendors as vendor}
                 <label class="flex items-center cursor-pointer group">
@@ -53,9 +53,9 @@
                         type="checkbox"
                         checked={selectedVendors.includes(vendor)}
                         on:change={() => toggleFilter(selectedVendors, vendor)}
-                        class="w-4 h-4 text-blue-600 bg-slate-700 border-slate-600 rounded focus:ring-blue-500 focus:ring-2 cursor-pointer"
+                        class="w-4 h-4 text-fuchsia-500 bg-slate-700 border-fuchsia-500 rounded focus:ring-fuchsia-500 focus:ring-2 cursor-pointer accent-fuchsia-500"
                     />
-                    <span class="ml-2 text-sm text-slate-400 group-hover:text-slate-300 transition-colors">{vendor}</span>
+                    <span class="ml-2 text-sm text-yellow-300 group-hover:text-lime-300 transition-colors">{vendor}</span>
                 </label>
             {/each}
         </div>
@@ -63,7 +63,7 @@
 
     <!-- Endpoint -->
     <div>
-        <h4 class="text-sm font-medium text-slate-300 mb-3">Endpoint</h4>
+        <h4 class="text-sm font-medium text-cyan-300 mb-3">Endpoint</h4>
         <div class="space-y-2">
             {#each endpoints as endpoint}
                 <label class="flex items-center cursor-pointer group">
@@ -71,9 +71,9 @@
                         type="checkbox"
                         checked={selectedEndpoints.includes(endpoint)}
                         on:change={() => toggleFilter(selectedEndpoints, endpoint)}
-                        class="w-4 h-4 text-blue-600 bg-slate-700 border-slate-600 rounded focus:ring-blue-500 focus:ring-2 cursor-pointer"
+                        class="w-4 h-4 text-fuchsia-500 bg-slate-700 border-fuchsia-500 rounded focus:ring-fuchsia-500 focus:ring-2 cursor-pointer accent-fuchsia-500"
                     />
-                    <span class="ml-2 text-sm text-slate-400 group-hover:text-slate-300 transition-colors">{endpoint}</span>
+                    <span class="ml-2 text-sm text-yellow-300 group-hover:text-lime-300 transition-colors">{endpoint}</span>
                 </label>
             {/each}
         </div>
